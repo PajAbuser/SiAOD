@@ -1,0 +1,8 @@
+Button      Carolyn     10/4/8141   125         150         Female      
+Ballard     Bart        11/22/2371  124         161         Male        
+Allcott     Roger       5/8/4842    113         163         Male        
+Thorne      Maddison    12/7/8896   126         199         Female      
+Jennson     Sydney      1/24/9875   59          204         Female      
+Mason       Maribel     2/1/0902    149         211         Female      
+Lynch       Samara      7/18/3175   149         214         Female      
+Donnelly    Tom         6/22/3379   88          219         Male        

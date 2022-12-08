@@ -1,0 +1,3 @@
+C:/Users/ummegolsum/CLionProjects/SiAOD_Dolg/dolg8/cmake-build-debug/CMakeFiles/main.dir
+C:/Users/ummegolsum/CLionProjects/SiAOD_Dolg/dolg8/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/ummegolsum/CLionProjects/SiAOD_Dolg/dolg8/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,8 @@
+Richardson  Makenzie    7/14/4906   72          152         Female      
+Spencer     Bob         9/1/7196    90          153         Male        
+Vaughn      Josh        6/24/8812   118         178         Male        
+Kent        Thea        11/29/9265  147         184         Female      
+James       Leroy       11/4/1953   80          195         Male        
+Crawford    Gil         8/11/2851   143         198         Male        
+Price       Courtney    6/8/5320    49          198         Female      
+Kelly       Oliver      8/12/2855   75          207         Male        

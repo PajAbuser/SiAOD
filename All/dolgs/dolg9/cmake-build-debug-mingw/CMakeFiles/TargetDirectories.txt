@@ -1,0 +1,3 @@
+D:/Projects/SiAOD/SiAOD2/dolgs/dolg9/cmake-build-debug-mingw/CMakeFiles/main.dir
+D:/Projects/SiAOD/SiAOD2/dolgs/dolg9/cmake-build-debug-mingw/CMakeFiles/edit_cache.dir
+D:/Projects/SiAOD/SiAOD2/dolgs/dolg9/cmake-build-debug-mingw/CMakeFiles/rebuild_cache.dir
