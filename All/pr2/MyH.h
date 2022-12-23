@@ -55,118 +55,44 @@ void fibbonaci(string name) {
     }
     if(file.good()) {
         string line;
-        int prev1 = 1, prev2 = 0, curr = 1;
+        int prev1 = 1, prev2 = 1, curr = 1, temp, count = 1;
         while(!file.eof()) {
             int curr = prev1 + prev2;
-            for (int i = 1; i < curr; i++) {
-                file.get(line,1,' ');
+            cout << count << " ";
+            for (int i = 0; i < curr; i++) {
+                if(file.eof()) break;
+                line = file.get();
                 cout << line;
-                cout << endl;
             }
-            curr  = prev1 + prev2;
+            cout << endl;
+            temp = curr;
+            curr = prev1 + prev2;
             prev2 = prev1;
-            prev1 = curr;
+            prev1 = temp;
+            count++;
         }
     }
     file.close();
 }
-void textToBin(string bFileN, string tFileN) {
-    ifstream tFile(tFileN, ios::binary);
-    fstream bFile(bFileN, ios::binary);
-    if(tFile.good() && bFile.good()) {
-        Bank bank;
-        while (tFile >> bank.code) {
-            tFile.get();
-            tFile.getline(bank.name, 20, '\n');
-            tFile.get();
-            tFile.getline(bank.address, 30, '\n');
-            tFile.get();
-            tFile.getline(bank.type, 1, '\n');
-            tFile.get();
-            bFile.write((char *) &bank, sizeof(Bank));
-        }
-        tFile.close();
-        bFile.close();
+
+void textToBin(string txtName, string binName){
+    ifstream txtFile;
+    ofstream binFile;
+    if(!txtFile.is_open()){
+        txtFile.open(PATH, ios::app);
     }
-}
-void binToText(string bFileN, string tFileN) {
-    ifstream inBinFile(bFileN, ios::binary);
-    ofstream outTextFile(tFileN, ios::binary);
-    if (inBinFile.good() && outTextFile.good()) {
-        Bank bank;
-        while (inBinFile.read((char *) &bank, sizeof(Bank))) {
-            outTextFile << bank.code << '\n'
-                        << bank.name << '\n'
-                        << bank.address << '\n'
-                        << bank.type << '\n';
+    if(!binFile.is_open()){
+        binFile.open(PATH, ios::app);
+    }
+    if(txtFile.good() && binFile.good()){
+        string line;
+        while(!txtFile.eof()){
+            getline(txtFile, line);
+            binFile << line;
         }
     }
+    txtFile.close();
+    binFile.close();
 }
-int printBinFile(string bFileN) {
-    fstream inBinFile(bFileN, ios::binary | ios::in);
-    if (!inBinFile.good())
-        return -1;
-    Bank bank;
 
-    while (inBinFile.read((char *) &bank, sizeof(Bank)))
-        print(bank);
-
-    inBinFile.close();
-    return 0;
-}
-int getRecordByPosition(string bFileN, int recordPosition, Bank &bank) {
-    fstream inBinFile(bFileN, ios::binary | ios::in);
-    if (!inBinFile.good())
-        return -1;
-
-    int offset = (recordPosition - 1) * sizeof(Bank);
-    inBinFile.seekg(offset, ios::beg);
-    if (inBinFile.bad())
-        return -1;
-
-    inBinFile.read((char *) &bank, sizeof(Bank));
-    inBinFile.close();
-    return 0;
-}
-int deleteRecordByID(string bFileN, int key) {
-    fstream inOutBinFile(bFileN, ios::binary | ios::in | ios::out);
-
-    inOutBinFile.seekg(-1 * sizeof(Bank), ios::end);
-    int sizeToCut = inOutBinFile.tellg();
-    inOutBinFile.seekg(ios::beg);
-
-    if (!inOutBinFile.good())
-        return -1;
-    Bank bank;
-    int cnt = 0;
-
-    while (inOutBinFile.read((char *) &bank, sizeof(Bank)) && bank.code != key)
-        cnt++;
-
-    while (inOutBinFile.read((char *) &bank, sizeof(Bank))) {
-        inOutBinFile.seekg(-2 * sizeof(Bank), ios::cur);
-        inOutBinFile.write((char *) &bank, sizeof(Bank));
-        inOutBinFile.seekg(sizeof(Bank), ios::cur);
-    }
-
-    //filesystem::resize_file(bFileN, sizeToCut);
-    inOutBinFile.close();
-    return 0;
-}
-void replaceTypeById(string bFileN, int code) {
-    ifstream bFileIn(bFileN, ios::binary);
-    if (bFileIn.good()) {
-        Bank bank; char state[1] = {}; int id; int c = 0;
-        while(bFileIn.read((char *) &bank, sizeof(Bank))) {
-            if (bank.code == code) {
-                id = c;
-                if (bank.type[0] == 1) state[0] = 0;
-                else state[0] = 1;
-            }
-            c++;
-        }
-        bFileIn.close();
-        ofstream bFileOut(bFileN, ios::binary);
-    }
-}
 #endif //PR2_MYH_H

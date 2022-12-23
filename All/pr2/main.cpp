@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include "MyH.h"
 //#include <D:\\Projects\\SiAOD\\pr2\\MyLib.h>
-#define PATH "D:\\Projects\\SiAOD\\SiAOD2\\pr2\\"+name+".txt"
+#define PATH "D:\\Projects\\SiAOD\\All\\pr2\\"+name+".txt"
 
 using namespace std;
 
