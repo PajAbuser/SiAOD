@@ -79,9 +79,11 @@ void textToBin(string txtName, string binName){
     ifstream txtFile;
     ofstream binFile;
     if(!txtFile.is_open()){
+        string name = txtName;
         txtFile.open(PATH, ios::app);
     }
     if(!binFile.is_open()){
+        string name = binName;
         binFile.open(PATH, ios::app);
     }
     if(txtFile.good() && binFile.good()){
