@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <bits/stdc++.h>
-#define PATH "D:\\Projects\\SiAOD\\SiAOD2\\pr2\\"+name+".txt"
+#define PATH "D:\\Projects\\SiAOD\\All\\pr2\\"+name+".txt"
 #define BankSize sizeof(int) + 65*sizeof(char)
 #pragma once
 
@@ -15,6 +15,7 @@ struct Bank {
     char address[30];
     char type[1];
 };
+
 string printMas(char* arr, int size){
     string str = "";
     for(int i = 0; i < size; i++){
@@ -40,23 +41,34 @@ void printF(ifstream& file) {
         cout << line << endl;
     }
 }
-void fibbonaci(ifstream& file) {
-    string line; int prev1 = 1, prev2 = 1, curr = 0, c = 0, c1 = 0;
-    string name = "out";
-    ofstream outFile(PATH);
-    while (!file.eof()) {
-        c = 0;
-        curr = prev1 + prev2;
-        outFile << left << setw(10) << curr << " ";
-        while (getline(file, line) && c < curr) {
-            outFile << line + " ";
-            c++;
-        }
-        outFile  << endl;
-        prev2 = prev1;
-        prev1 = curr;
-        c1++;
+void fillFile(string name, int size){
+    ofstream file(PATH, ios::app);
+    for(int i = 0; i < size; i++){
+        file << 1;
     }
+    file.close();
+}
+void fibbonaci(string name) {
+    ifstream file;
+    if(!file.is_open()){
+        file.open(PATH, ios::app);
+    }
+    if(file.good()) {
+        string line;
+        int prev1 = 1, prev2 = 0, curr = 1;
+        while(!file.eof()) {
+            int curr = prev1 + prev2;
+            for (int i = 1; i < curr; i++) {
+                file.get(line,1,' ');
+                cout << line;
+                cout << endl;
+            }
+            curr  = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = curr;
+        }
+    }
+    file.close();
 }
 void textToBin(string bFileN, string tFileN) {
     ifstream tFile(tFileN, ios::binary);
@@ -155,7 +167,6 @@ void replaceTypeById(string bFileN, int code) {
         }
         bFileIn.close();
         ofstream bFileOut(bFileN, ios::binary);
-        for()
     }
 }
 #endif //PR2_MYH_H
