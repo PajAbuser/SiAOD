@@ -4,4 +4,4 @@ project(pr3)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(pr3
-        pr3.cpp)
+        pr3.cpp BinaryFiles.h HashT.h MyHash.h)
