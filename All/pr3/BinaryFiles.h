@@ -1,9 +1,8 @@
-#ifndef PR2_MYH_H
-#define PR2_MYH_H
+#ifndef PR3_BINARYFILES_H
+#define PR3_BINARYFILES_H
 
-#include <iostream>
 #include <bits/stdc++.h>
-#define PATH "D:\\Projects\\SiAOD\\All\\pr2\\"+name+".txt"
+#define PATH "E:\\Projects\\SiAOD\\All\\pr3\\"+name+".txt"
 #pragma once
 
 using namespace std;
@@ -151,17 +150,17 @@ void binToText(string txtName, string binName){
     txtFile.close();
     binFile.close();
 }
-void getRecord(string name, int index){
+Bank getRecord(string name, int index){
     ifstream file;
     Bank bank;
     if(!file.is_open()){
         file.open(PATH, ios::binary | ios::app);
     }
     int count = 0;
+    file.seekg(0, ios::beg);
     while(file.read((char*)&bank, sizeof(bank))){
         if(count == index){
-            print(bank);
-            break;
+            return bank;
         }
         count++;
         file.get();
@@ -233,4 +232,4 @@ void filterByForm(string name, bool form){
     file.close();
 }
 
-#endif //PR2_MYH_H
+#endif //PR3_BINARYFILES_H
