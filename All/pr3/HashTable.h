@@ -1,5 +1,4 @@
 #include "BinaryFiles.h"
-#define PATH "E:\\Projects\\SiAOD\\All\\pr3\\"+name+".txt"
 
 int nextPrime(int i){
     int j;

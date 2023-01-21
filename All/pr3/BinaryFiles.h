@@ -2,7 +2,8 @@
 #define PR3_BINARYFILES_H
 
 #include <bits/stdc++.h>
-#define PATH "E:\\Projects\\SiAOD\\All\\pr3\\"+name+".txt"
+//#define PATH "E:\\Projects\\SiAOD\\All\\pr3\\"+name+".txt"
+#define PATH "C:\\Users\\ummegolsum\\CLionProjects\\SiAOD\\All\\pr3\\"+name+".txt"
 #pragma once
 
 using namespace std;
