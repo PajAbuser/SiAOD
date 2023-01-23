@@ -4,4 +4,4 @@ project(pr4)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(pr4
-        pr4.cpp Tree.h)
+        pr4.cpp ../pr5/BinarySearchTree.h EquationTree.h)

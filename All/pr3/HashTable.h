@@ -1,4 +1,4 @@
-#include "BinaryFiles.h"
+#include "../pr5/BinaryFiles.h"
 #define PATH "E:\\Projects\\SiAOD\\All\\pr3\\"+name+".txt"
 
 int nextPrime(int i){
@@ -102,7 +102,7 @@ struct HashTable{
         }
     }
     
-    void test(){
+    void test() {
         cout << "*******************************************\n";
         cout << "Test on big amount of data\n";
         int size = 1000000;
@@ -114,18 +114,18 @@ struct HashTable{
         Bank bank;
         Record record;
         string name = "bin";
-        if(!file.is_open()){
+        if (!file.is_open()) {
             file.open(PATH, ios::binary | ios::app);
         }
         file.seekg(0, ios::beg);
-        while(file.read((char*)&bank, sizeof(bank))){
+        while (file.read((char *) &bank, sizeof(bank))) {
             record.bank = bank;
             record.empty = false;
             add(record);
             file.get();
         }
         file.close();
-        while(1) {
+        while (1) {
             cout << "Searching...\n";
             auto begin = chrono::high_resolution_clock::now();
             table[find(getRecord("bin", 0).code)].print();
@@ -144,6 +144,35 @@ struct HashTable{
             cout << "Time to find last record: " << duration.count() << "ms\n";
             int i;
             cin >> i;
+        }
+        void test2() {
+            int size;
+            cout << "\nEnter size: ";
+            cin >> size;
+            for (int i = 0; i < size; i++) {
+                Bank bank;
+                bank.code = abs(rand()) % 10000;
+                bank.type = rand() % 2;
+                for (int j = 0; j < 20; j++) {
+                    bank.name[j] = rand() % 26 + 65;
+                }
+                for (int j = 0; j < 30; j++) {
+                    bank.address[j] = rand() % 26 + 65;
+                }
+            }
+            hTable.print();
+            cout << "Ammount of rehashes: " << hTable.ammountOfRehashes << endl;
+            cout << "Ammount of collisions: " << hTable.ammountOfCollisions << endl;
+            while (1) {
+                int code;
+                cin >> code;
+                cout << "\nResult: ";
+                int ind = hTable.find(code);
+                cout << ind << endl;
+                if(ind != -1) hTable.table[ind].print();
+                else cout << "Not found" << endl;
+                cout << endl;
+            }
         }
     }
 };
