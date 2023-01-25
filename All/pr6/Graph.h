@@ -21,7 +21,7 @@ struct Graph {
         Edge() {}
     };
 
-    const int INF = 1000;
+    const int INF = 999;
 
     vector<Vertex*> vertices;
 
@@ -88,7 +88,7 @@ struct Graph {
                     v = j;
             if (min_e[v] == INF) {
                 cout << "No MST!";
-                exit(0);
+                return;
             }
 
             used[v] = true;
@@ -113,8 +113,12 @@ struct Graph {
 
     void printMST(vector<int> parent, int n, vector<vector<int>> graph){
         cout << "Edge \tWeight \n";
-        for (int i = 1; i < vertices.size(); i++)
+        int sum = 0;
+        for (int i = 1; i < vertices.size(); i++) {
             cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
+            sum += graph[i][parent[i]];
+        }
+        cout << "MSP weight = " << sum << endl;
     }
 
     void PrimMST(){
@@ -135,11 +139,24 @@ struct Graph {
         printMST(parent, vertices.size(), incMatrix);
     }
 
+    void adjVertices(){
+        for(int i = 0; i < vertices.size(); i++) {
+            cout << "Vertex " << i << " is adjacent to: ";
+            for(int j = 0; j < vertices.size(); j++) {
+                if(incMatrix[i][j] != 0 && incMatrix[i][j] != INF) {
+                    cout << j << " ";
+                }
+            }
+            cout << endl << endl;
+        }
+    }
+
     void generate(int n){
         for(int i = 0; i < n; i++) {
             addVertex(new Vertex(i));
         }
-        int m = rand() % n;
+        //int m = rand() % n;
+        int m = n;
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < m; j++) {
                 if(i != j) {

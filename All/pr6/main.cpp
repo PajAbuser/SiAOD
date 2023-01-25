@@ -12,6 +12,7 @@ int main() {
         cin >> size;
         graph.generate(size);
         graph.print();
+        graph.adjVertices();
         graph.PrimMST();
     }
 }
