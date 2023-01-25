@@ -116,6 +116,76 @@ struct BinarySearchTree{
             }
         }
     }
+    void inOrder(Node* node, vector<Node*>& nodes){
+        if(node){
+            inOrder(node->left, nodes);
+            nodes.push_back(node);
+            inOrder(node->right, nodes);
+        }
+    }
+    void addAVL(Node* node){
+        if(root == nullptr){
+            root = node;
+            return;
+        }
+        Node* current = root;
+        while(true){
+            if(node->val.code < current->val.code){
+                if(current->left == nullptr){
+                    current->left = node;
+                    return;
+                }
+                current = current->left;
+            } else {
+                if(current->right == nullptr){
+                    current->right = node;
+                    return;
+                }
+                current = current->right;
+            }
+        }
+    }
+    void rightTurn(Node* node){
+        Node* left = node->left;
+        node->left = left->right;
+        left->right = node;
+        node = left;
+    }
+    void leftTurn(Node* node){
+        Node* right = node->right;
+        node->right = right->left;
+        right->left = node;
+        node = right;
+    }
+    void rightLeftTurn(Node* node){
+        rightTurn(node->right);
+        leftTurn(node);
+    }
+    void leftRightTurn(Node* node){
+        leftTurn(node->left);
+        rightTurn(node);
+    }
+    void ballanceLikeAVL(){
+        vector<Node*> nodes;
+        inOrder(root, nodes);
+        for (int i = 0; i < nodes.size(); ++i) {
+            if(nodes[i]->left != nullptr && nodes[i]->right != nullptr){
+                if(nodes[i]->left->val.code > nodes[i]->right->val.code){
+                    leftRightTurn(nodes[i]);
+                } else {
+                    rightLeftTurn(nodes[i]);
+                }
+            } else if(nodes[i]->left != nullptr){
+                if(nodes[i]->left->val.code > nodes[i]->val.code){
+                    leftRightTurn(nodes[i]);
+                }
+            } else if(nodes[i]->right != nullptr){
+                if(nodes[i]->right->val.code < nodes[i]->val.code){
+                    rightLeftTurn(nodes[i]);
+                }
+            }
+        }
+    }
     string find(Node* val){
         string path = "root";
         Node* current = root;

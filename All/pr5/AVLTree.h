@@ -116,7 +116,21 @@ struct AVLTree{
             }
         }
     }
-
+    void getNodes(Node* node, vector<Node*>& nodes){
+        if(node){
+            getNodes(node->left, nodes);
+            nodes.push_back(node);
+            getNodes(node->right, nodes);
+        }
+    }
+    void ballance(){
+        vector<Node*> nodes;
+        getNodes(root, nodes);
+        root = nullptr;
+        for (int i = 0; i < nodes.size(); ++i) {
+            add(nodes[i]);
+        }
+    }
     string find(Node* val){
         string path = "root";
         Node* current = root;

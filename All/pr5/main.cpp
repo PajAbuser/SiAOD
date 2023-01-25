@@ -1,6 +1,7 @@
 #include "BinarySearchTree.h"
 #include "BinaryFiles.h"
 #include "HashTable.h"
+#include "AVLTree.h"
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -57,6 +58,12 @@ int main() {
                                 binarySearchTree->remove(&nodes[i]);
                                 binarySearchTree->print();
                             }
+                            break;
+                        }
+                        case 3: {
+                            cout << "\nBallance\n";
+                            binarySearchTree->ballanceLikeAVL();
+                            binarySearchTree->print();
                             break;
                         }
                         case 0: {
